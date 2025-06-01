@@ -25,7 +25,7 @@ def download_file_from_gdrive(file_id, destination):
 @st.cache_resource
 def load_model_and_tokenizer():
     try:
-        model = load_model("malurl_model.keras")
+        model = load_model("malurl_modele.keras")
     except Exception as e:
         st.error(f"Erreur lors du chargement du modèle : {e}")
         st.stop()
@@ -74,7 +74,7 @@ menu = st.sidebar.radio(
         
 # === Téléchargement des fichiers depuis Google Drive ===
 
-download_file_from_gdrive("15Y2lKplSzYHhUkpJoOb9Y5s0jCrnkIeP", "malurl_model.keras")
+download_file_from_gdrive("1-AIPtEak9q7fDJJU3JN_-qFeeHH3x5Tx", "malurl_modele.keras")
 download_file_from_gdrive("1R1Nr1RLA81QC22t7MXrmkMQv0if-v5Oh", "malicious_phish.csv")
 download_file_from_gdrive("10SqRzMMnbSzs9XWllbNYKBKWQjF2i2qw", "tokenizer.pkl")
 
@@ -85,7 +85,7 @@ df = load_data()
 label_encoder = prepare_label_encoder(df)
 
 if menu == "Accueil":
-    st.title("🔍 Détection d'URLs malveillantes avec LSTM")
+    st.title("🔍 Détection d'URLs malveillantes avec LSTM + GloVe")
     st.markdown("""
     Cette application utilise un modèle LSTM pour prédire la catégorie d'une URL. 
     Elle permet de visualiser la distribution des classes, 

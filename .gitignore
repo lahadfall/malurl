@@ -16,5 +16,5 @@ __pycache__/
 # Autres fichiers à ignorer (logs, temporaires)
 *.log
 malicious_phish.csv
-malurl_model.keras
+malurl_modele.keras
 tokenizer.pkl
