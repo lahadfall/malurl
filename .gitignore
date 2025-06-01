@@ -1,0 +1,20 @@
+
+
+
+# Ignore l'environnement virtuel
+my_env/
+env/
+venv/
+
+# Fichiers Python inutiles
+__pycache__/
+*.py[cod]
+
+# Fichiers système
+.DS_Store
+
+# Autres fichiers à ignorer (logs, temporaires)
+*.log
+malicious_phish.csv
+malurl_lstm_model.keras
+tokenizer_malurl.pkl
