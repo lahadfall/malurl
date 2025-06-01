@@ -25,11 +25,11 @@ def download_file_from_gdrive(file_id, destination):
 @st.cache_resource
 def load_model_and_tokenizer():
     try:
-        model = load_model("malurl_lstm_model.keras")
+        model = load_model("malurl_model.keras")
     except Exception as e:
         st.error(f"Erreur lors du chargement du modèle : {e}")
         st.stop()
-    with open("tokenizer_malurl.pkl", "rb") as f:
+    with open("tokenizer.pkl", "rb") as f:
         tokenizer = pickle.load(f)
     return model, tokenizer
 
@@ -74,9 +74,9 @@ menu = st.sidebar.radio(
         
 # === Téléchargement des fichiers depuis Google Drive ===
 
-download_file_from_gdrive("15Y2lKplSzYHhUkpJoOb9Y5s0jCrnkIeP", "malurl_lstm_model.keras")
+download_file_from_gdrive("15Y2lKplSzYHhUkpJoOb9Y5s0jCrnkIeP", "malurl_model.keras")
 download_file_from_gdrive("1R1Nr1RLA81QC22t7MXrmkMQv0if-v5Oh", "malicious_phish.csv")
-download_file_from_gdrive("10SqRzMMnbSzs9XWllbNYKBKWQjF2i2qw", "tokenizer_malurl.pkl")
+download_file_from_gdrive("10SqRzMMnbSzs9XWllbNYKBKWQjF2i2qw", "tokenizer.pkl")
 
 
 # Chargement des composants
