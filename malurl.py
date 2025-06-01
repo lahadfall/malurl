@@ -13,13 +13,26 @@ from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+@st.cache_resource
+def download_file_from_gdrive(file_id, destination):
+    if not os.path.exists(destination):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, destination, quiet=False)
+    else:
+        print(f"{destination} existe déjà. Téléchargement ignoré.")
+
 # === Chargements ===
 @st.cache_resource
 def load_model_and_tokenizer():
-    model = load_model("malurl_lstm_model.keras")
+    try:
+        model = load_model("malurl_lstm_model.keras")
+    except Exception as e:
+        st.error(f"Erreur lors du chargement du modèle : {e}")
+        st.stop()
     with open("tokenizer_malurl.pkl", "rb") as f:
         tokenizer = pickle.load(f)
     return model, tokenizer
+
 
 @st.cache_data
 def load_data():
@@ -58,13 +71,6 @@ menu = st.sidebar.radio(
     ]
 )
 
-
-def download_file_from_gdrive(file_id, destination):
-    if not os.path.exists(destination):
-        url = f"https://drive.google.com/uc?id={file_id}"
-        gdown.download(url, destination, quiet=False)
-    else:
-        print(f"{destination} existe déjà. Téléchargement ignoré.")
         
 # === Téléchargement des fichiers depuis Google Drive ===
 
